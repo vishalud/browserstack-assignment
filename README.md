@@ -103,6 +103,7 @@ http://127.0.0.1:8080/stats
 
 
 #Pending
+
 DB layer with Mysql. But the logic remains the same for automation. A new ansible role for mysql along with a new box type for mysql on the same network
 App layer. My initial thoughts were to have a simple flask app that would app.route to diff paths and deploy this with a new set of tasks in the webserver role to be applied to all web nodes that already run nginx
 PS: There are a few warnings in the code from ansible but its been a while I've woprked with ansible and a lot has changed since v1
