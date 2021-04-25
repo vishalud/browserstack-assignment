@@ -1,0 +1,4 @@
+---
+# file: group_vars/all
+ansible_connection: ssh
+ansible_ssh_user: vagrant
