@@ -13,6 +13,7 @@
   become_user: root
   roles:
     - nginx
+    - flask
 
 - hosts: lblservers
   user: root
@@ -46,3 +47,17 @@
     virtual_ipaddress: 10.0.26.81
     priority: 100
     secret_passwd: bimb0
+
+- hosts: mysql
+  user: root
+  become: true
+  become_user: root
+  roles:
+    - mysql
+  vars:
+    db_one_name: app_one_db
+    db_one_user: app_one_user
+    db_one_password: bimb0
+    db_two_name: app_two_db
+    db_two_user: app_two_user
+    db_two_password: bimb0

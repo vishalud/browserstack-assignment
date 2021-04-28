@@ -1,0 +1,57 @@
+---
+# tasks file for mysql
+- name: Install MySQL community repository
+  yum:
+    name: "http://repo.mysql.com/mysql-community-release-el7-5.noarch.rpm"
+    state: present
+
+- name: Install MySQL database
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "mysql-server"
+    - "mysql-devel"
+
+- name: create MySQL configuration file
+  copy:
+    content: |
+        [client]
+        user=root
+        password="bimb0"
+    dest: "/etc/.my.cnf"
+
+- name: Start MySQL Service
+  service:
+    name: mysqld
+    state: started
+    enabled: yes
+
+- name: Install mysql-python package
+  yum:
+    name: MySQL-python
+    state: present
+
+- name: Create Application One Database
+  mysql_db:
+    name: "{{ db_one_name }}"
+    state: present
+
+- name: Create Database One user
+  mysql_user:
+    name: "{{ db_one_user }}"
+    password: "{{ db_one_password }}"
+    priv: "*.*:ALL"
+    state: present
+
+- name: Create Application Two Database
+  mysql_db:
+    name: "{{ db_two_name }}"
+    state: present
+
+- name: Create Database Two user
+  mysql_user:
+    name: "{{ db_two_user }}"
+    password: "{{ db_two_password }}"
+    priv: "*.*:ALL"
+    state: present

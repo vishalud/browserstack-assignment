@@ -1,0 +1,44 @@
+---
+# tasks file for flask
+
+- name: Install all required dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "epel-release"
+    - "python36"
+    - "python36-devel"
+    - "python36-setuptools"
+
+- name: Install pip
+  yum:
+    name: "python-pip"
+    state: latest
+
+- name: Install required Python libraries
+  pip:
+    name: "{{ item }}"
+    state: present
+    executable: pip3
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+  with_items:
+    - "flask"
+    - "flask-mysql"
+
+- name: Copy source code for app_one
+  copy:
+    src: app_one.py
+    dest: /opt/app_one.py
+
+- name: Start web server app_one
+  shell: FLASK_APP_ONE=/opt/app_one.py nohup flask run --host=0.0.0.0 &
+
+- name: Copy source code for app_two
+  copy:
+    src: app_two.py
+    dest: /opt/app_two.py
+
+- name: Start web server app_two
+  shell: FLASK_APP_TWO=/opt/app_two.py nohup flask run --host=0.0.0.0 &

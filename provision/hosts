@@ -11,3 +11,7 @@ lbl1  ansible_ssh_host=10.0.26.201 ansible_ssh_private_key_file=/home/vagrant/.v
 
 [keepalived_backup]
 lbl2  ansible_ssh_host=10.0.26.202 ansible_ssh_private_key_file=/home/vagrant/.vagrant/machines/haproxy2/virtualbox/private_key
+
+[mysql]
+mysql1  ansible_ssh_host=10.0.26.111 ansible_ssh_private_key_file=/home/vagrant/.vagrant/machines/mysql1/virtualbox/private_key
+mysql2  ansible_ssh_host=10.0.26.112 ansible_ssh_private_key_file=/home/vagrant/.vagrant/machines/mysql2/virtualbox/private_key
