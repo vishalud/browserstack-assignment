@@ -60,7 +60,7 @@ end
       end
       mgmt.vm.provision "shell", inline: "service network restart"
       mgmt.ssh.shell = "bash -c 'BASH_ENV=/etc/profile exec bash'"
-      mgmt.vm.provision "file", source: "/Users/vuderani/projects/browserstack-assignment/provision", destination: "/home/vagrant/"
+      mgmt.vm.provision "file", source: "provision", destination: "/home/vagrant/"
       mgmt.vm.provision "file", source: ".vagrant", destination: "/home/vagrant/"
       mgmt.vm.provision "shell", path: "shell/ansible-setup.sh"
   end
